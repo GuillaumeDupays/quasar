@@ -1,10 +1,11 @@
 <template>
   <div id="q-app">
     <router-view />
+    <Achats />
   </div>
 </template>
+
 <script>
-export default {
-  name: 'App'
-}
+import Achats from './pages/Achats'
+export default {}
 </script>
