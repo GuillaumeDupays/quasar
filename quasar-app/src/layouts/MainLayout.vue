@@ -12,10 +12,15 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Acheter et vendre
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn 
+          to="/auth"
+          flat
+          icon-right="account_circle"
+          label="Se connecter"
+          class="absolute-right"
+        />
       </q-toolbar>
     </q-header>
 
