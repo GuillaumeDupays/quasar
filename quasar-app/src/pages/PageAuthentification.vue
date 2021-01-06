@@ -10,20 +10,19 @@
                 align="justify"
                 narrow-indicator
                 >
-                <q-tab name="connexion" label="Connexion" />
-                <q-tab name="inscription" label="Inscription" />
+                <q-tab name="connecter" label="Connexion" />
+                <q-tab name="inscrire" label="Inscription" />
             </q-tabs>
 
             <q-separator />
 
             <q-tab-panels v-model="tab" animated>
-                <q-tab-panel name="connexion">
-                    <div class="text-h6">Connexion</div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <q-tab-panel name="connecter">
+                    <connexion-inscription :tab="tab"/>
                 </q-tab-panel>
 
-                <q-tab-panel name="inscription">
-                   <Inscription />
+                <q-tab-panel name="inscrire">
+                   <connexion-inscription :tab="tab"/>
                 </q-tab-panel>
             </q-tab-panels>
         </q-card>
@@ -31,7 +30,7 @@
 </template>
 
 <script>
-import Inscription from '../components/Authentification/Inscription.vue'
+
 export default {
     data () {
         return {
@@ -39,14 +38,13 @@ export default {
         }
     },
     components : {
-        Inscription
+        'connexion-inscription' : require('../components/Authentification/ConnexionInscription').default
     }
 }
 </script>
-
-<style lang="scss" scoped>
-    .auth-tabs {
-        max-width: 500px;
-        margin: auto;
-    }
+<style>
+	.auth-tabs {
+		max-width: 500px;
+		margin: 0 auto;
+	}
 </style>

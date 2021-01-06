@@ -17,6 +17,18 @@
       <q-input
         filled
         type="number"
+        v-model="achat.pointure"
+        label="Pointure *"
+        lazy-rules
+        :rules="[
+          val => val !== null && val !== '' || 'Veuillez ajouter la pointure',
+          val => val > 0 && val < 100 || 'Il me faut la pointure !'
+        ]"
+      />
+
+      <q-input
+        filled
+        type="number"
         v-model="achat.prixAchat"
         label="Prix d'achat *"
         lazy-rules
@@ -38,24 +50,21 @@
 
 
     export default {
-        data() {
-            return {
-                achat: {
-                    marque: '',
-                    prixAchat: ''
-                }
-            }
+      data() {
+        return {
+          achat: {
+            marque: '',
+            pointure: '',
+            prixAchat: ''
+          }
+        }
+      },
+      methods: {
+        ajouterAchat() {
+          this.$store.dispatch("AJOUTER_ACHAT", this.achat);
+          this.achat= "";
         },
-        methods: {
-            ajouterAchat() {
-                const achat = {
-                    dateCreation: new Date(),
-                    marque: this.marque,
-                    prixAchat: this.prixAchat
-                };
-                this.$store.commit('AJOUTER_ACHAT', achat);
-            }
-        },
+      }
     }
 </script>
 

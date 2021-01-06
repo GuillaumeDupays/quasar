@@ -1,3 +1,5 @@
+import db from '../shared/db'
+
 const state = {
     columns: [
         {
@@ -15,31 +17,27 @@ const state = {
         { name: 'prixAchat', label: 'Prix d\'achat', field: 'prixAchat'},
        /* { name: 'dateAchat', label: 'Date d\'achat', field: 'dateAchat'},*/
     ],
-    achats: {}
+    achats: []
 }
 
 const mutations = {
-    AJOUTER_ACHAT(state, payload) {
-        const id = Date.now();
-        state.achats[id] = payload;
-        db.ajouter(payload)
-        .then(achat => {
-            console.log(achat)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+    AJOUTER_ACHAT(state, achat) {
+        state.achats = [achat, ...state.achats];
     }
 }
 
 const actions = {
-
+    ajouterAchat({ commit }, achat) {
+      db.ajouter().then(() => {
+        commit("AJOUTER_ACHAT", achat);
+      });
+    }
 }
 
 const getters = {
     achats: (state) => { return state.achats }
 }
-import db from '../shared/db'
+
 export default {
     namespaced: true,
     state,
